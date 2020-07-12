@@ -30,11 +30,11 @@ EOF
 }
 
 fuzz_params() {
-	ffuf -w parameters.txt -u "${DOMAIN}?FUZZ=https:%2F%2FFUZZ-${DOMAIN_CLEAN}.${SSRF_CATCHER}" -mc all -o ./ffuf-output/${DOMAIN_CLEAN}-parameters.json >> /dev/null 2>&1
+	ffuf -w parameters.txt -u "${DOMAIN}?FUZZ=https:%2F%2FFUZZ-${DOMAIN_CLEAN}.${SSRF_CATCHER}" -timeout 3 -o ./ffuf-output/${DOMAIN_CLEAN}-parameters.json >> /dev/null 2>&1
 }
 
 fuzz_headers() {
-	ffuf -w headers.txt -u "${DOMAIN}" -H "FUZZ: http://FUZZ-${DOMAIN_CLEAN}.${SSRF_CATCHER}" -o ./ffuf-output/${DOMAIN_CLEAN}-headers.json >> /dev/null 2>&1
+	ffuf -w headers.txt -u "${DOMAIN}" -H "FUZZ: http://FUZZ-${DOMAIN_CLEAN}.${SSRF_CATCHER}" -timeout 3 -o ./ffuf-output/${DOMAIN_CLEAN}-headers.json >> /dev/null 2>&1
 }
 
 ####### Start #######
